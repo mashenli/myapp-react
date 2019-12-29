@@ -155,7 +155,7 @@ module.exports = function (webpackEnv) {
       admin: [
         isEnvDevelopment &&
         require.resolve('react-dev-utils/webpackHotDevClient'),
-        paths.appSrc+'/admin.js',
+        paths.appAdminJs,
       ].filter(Boolean),
     },
     output: {
@@ -166,8 +166,8 @@ module.exports = function (webpackEnv) {
       // There will be one main bundle, and one file per asynchronous chunk.
       // In development, it does not produce real files.
       filename: isEnvProduction
-        ? 'static/js/[name].[hash:8].js'
-        : isEnvDevelopment && 'static/js/[name].bundle.js',
+        ? 'static/js/[name].[contenthash:8].js'
+        : isEnvDevelopment && 'static/js/[name]/[name].bundle.js',
       // TODO: remove this when upgrading to webpack 5
       futureEmitAssets: true,
       // There are also additional JS chunk files if you use code splitting.
@@ -511,7 +511,7 @@ module.exports = function (webpackEnv) {
           {
             inject: true,
             chunks: ["index"],
-            template: paths.appHtml,
+            template: paths.appHtml
           },
           isEnvProduction
             ? {
@@ -537,7 +537,7 @@ module.exports = function (webpackEnv) {
           {
             inject: true,
             chunks: ["admin"],
-            template: paths.appHtml,
+            template: paths.appAdmin,
             fileName: 'admin.html'
           },
           isEnvProduction
@@ -608,21 +608,17 @@ module.exports = function (webpackEnv) {
       new ManifestPlugin({
         fileName: 'asset-manifest.json',
         publicPath: publicPath,
-        generate: (seed, files, entrypoints) => {
+        generate: (seed, files) => {
           const manifestFiles = files.reduce((manifest, file) => {
             manifest[file.name] = file.path;
             return manifest;
           }, seed);
-          const entrypointFiles = entrypoints.main.filter(
-            fileName => !fileName.endsWith('.map')
-          );
-
           return {
             files: manifestFiles,
-            entrypoints: entrypointFiles,
           };
         },
       }),
+     
       // Moment.js is an extremely popular library that bundles large locale files
       // by default due to how Webpack interprets its code. This is a practical
       // solution that requires the user to opt into importing specific locales.

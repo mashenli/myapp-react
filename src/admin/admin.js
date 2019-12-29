@@ -1,10 +1,10 @@
 import React from 'react';
-import './App.css';
-import Header from './components/header/header.js'
-import About from './components/swiper.js'
-import '../node_modules/swiper/css/swiper.min.css'
+import './admin.css';
+import Header from '../components/header/header.js'
+import About from '../components/swiper.js'
+import '../../node_modules/swiper/css/swiper.min.css'
 
-function App() {
+function Admin() {
   return (
     <div className="App">
       <Header></Header>
@@ -12,7 +12,7 @@ function App() {
       </About>
       <div className="content">
         <div className="content-title">
-          {/* <p>|   PLC产品   |</p> */}
+          <p>|   PLC产品   |</p>
         </div>
         <div className="content-items">
           <div className="content-items-item">
@@ -86,7 +86,6 @@ function App() {
               </div>
             </div>
           </div>
-
           
         </div>
       </div>
@@ -94,4 +93,4 @@ function App() {
   );
 }
 
-export default App;
+export default Admin;
