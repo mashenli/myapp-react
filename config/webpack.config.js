@@ -538,7 +538,7 @@ module.exports = function (webpackEnv) {
             inject: true,
             chunks: ["admin"],
             template: paths.appHtml,
-            fileName: 'admin.html'
+            filename: 'admin.html'
           },
           isEnvProduction
             ? {
@@ -613,12 +613,10 @@ module.exports = function (webpackEnv) {
             manifest[file.name] = file.path;
             return manifest;
           }, seed);
-          // console.log(entrypoints)
           const entrypointFiles = [
             ...entrypoints.index,
            ...entrypoints.admin,
           ]
-          // console.log(entrypointFiles)
           return {
             files: manifestFiles,
             entrypoints: entrypointFiles,
