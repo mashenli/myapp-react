@@ -537,7 +537,7 @@ module.exports = function (webpackEnv) {
           {
             inject: true,
             chunks: ["admin"],
-            template: paths.appHtml,
+            template: paths.appAdmin,
             filename: 'admin.html'
           },
           isEnvProduction
