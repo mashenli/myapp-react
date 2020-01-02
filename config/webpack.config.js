@@ -167,7 +167,7 @@ module.exports = function (webpackEnv) {
       // In development, it does not produce real files.
       filename: isEnvProduction
         ? 'static/js/[name].[contenthash:8].js'
-        : isEnvDevelopment && 'static/js/[name]/[name].bundle.js',
+        : isEnvDevelopment && 'static/js/[name].bundle.js',
       // TODO: remove this when upgrading to webpack 5
       futureEmitAssets: true,
       // There are also additional JS chunk files if you use code splitting.
@@ -537,7 +537,7 @@ module.exports = function (webpackEnv) {
           {
             inject: true,
             chunks: ["admin"],
-            template: paths.appAdmin,
+            template: paths.appHtml,
             fileName: 'admin.html'
           },
           isEnvProduction
@@ -608,13 +608,20 @@ module.exports = function (webpackEnv) {
       new ManifestPlugin({
         fileName: 'asset-manifest.json',
         publicPath: publicPath,
-        generate: (seed, files) => {
+        generate: (seed, files, entrypoints) => {
           const manifestFiles = files.reduce((manifest, file) => {
             manifest[file.name] = file.path;
             return manifest;
           }, seed);
+          // console.log(entrypoints)
+          const entrypointFiles = [
+            ...entrypoints.index,
+           ...entrypoints.admin,
+          ]
+          // console.log(entrypointFiles)
           return {
             files: manifestFiles,
+            entrypoints: entrypointFiles,
           };
         },
       }),

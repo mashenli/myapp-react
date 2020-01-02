@@ -7,9 +7,9 @@ import '../../node_modules/swiper/css/swiper.min.css'
 function App() {
   return (
     <div className="App">
-      <Header></Header>
+      {/* <Header></Header>
       <About>
-      </About>
+      </About> */}
       <div className="content">
         <div className="content-title">
           {/* <p>|   PLC产品   |</p> */}
