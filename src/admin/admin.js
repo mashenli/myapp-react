@@ -1,10 +1,26 @@
 import React from 'react';
-import './admin.css';
-
+import "./register/css/style.css"
+ 
 function Admin() {
   return (
-    <div className="App">
-      
+    <div className="main">
+      <div className="mainin">
+        <div className="mainin1">
+          <ul>
+            <li>
+              <span>用户名：</span>
+              <input name="loginName" type="text" id="loginName" placeholder="登录名" className="SearchKeyword"></input>
+            </li>
+            <li>
+              <span>密码：</span>
+              <input type="password" name="Possword" id="Possword" placeholder="密码" className="SearchKeyword2"></input>
+            </li>
+            <li>
+              <button className="tijiao">提交</button>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   );
 }
