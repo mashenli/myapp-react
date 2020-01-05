@@ -142,5 +142,6 @@
   "devDependencies": {
     "glob": "^7.1.6",
     "webpack-manifest-plugin": "^2.2.0"
-  }
+  },
+  "proxy":"http://localhost:3001/"
 }
