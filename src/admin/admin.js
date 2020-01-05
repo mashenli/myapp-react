@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { Component } from 'react';
 import "./register/css/style.css"
- 
-function Admin() {
-  return (
-    <div className="main">
+
+class Admin extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { apiResponse: " " }
+  }
+  callAPI() {
+    fetch("http://localhost:3001")
+      .then(res => res.text())
+      .then(res => this.setState({ apiResponse: res }))
+      .then(err => err)
+  }
+  componentDidMount(){
+    this.callAPI()
+  }
+  render(){
+    return(
+    <div className = "main" >
+  <p>{this.state.apiResponse}</p>
       <div className="mainin">
         <div className="mainin1">
           <ul>
@@ -22,7 +37,8 @@ function Admin() {
         </div>
       </div>
     </div>
-  );
+    )
+  }
 }
 
 export default Admin;
