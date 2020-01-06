@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import "./register/css/style.css"
+const API = require('../api/serverapi')
 
 class Admin extends Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class Admin extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   callAPI() {
-    fetch("/")
+    fetch(API.adminAPI)
       .then(res => res.text())
       .then(res => this.setState({ apiResponse: res }))
       .then(err => err)
@@ -29,19 +30,22 @@ class Admin extends Component {
     this.setState({ password: e.target.value })
   }
   handleSubmit(e) {
-    let filter = "123"
+    let filter = {
+      name: "123"
+    }
     let getInformation = {
       method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'contentType': 'application/json;charset=UTF-8',
         'Accept': 'application/json',
       },
       body: JSON.stringify(filter),
-      mode:'cors'
+      mode: 'cors'
     }
-    fetch("/", getInformation)
-      .then(req => {req.json("123")
-        console.log("123")
+    fetch(API.adminAPI, getInformation)
+      .then(res => {
+        res.text()
+        console.log(res)
       })
       .then(err => console.log(err))
   }
