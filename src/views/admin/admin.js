@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import "./register/css/style.css"
-const API = require('../api/serverapi')
+const API = require('../../api/serverapi')
 
 class Admin extends Component {
   constructor(props) {

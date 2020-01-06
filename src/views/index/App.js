@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
-import Header from '../components/header/header.js'
-import About from '../components/swiper.js'
-import '../../node_modules/swiper/css/swiper.min.css'
+import Header from '../../components/header/header.js'
+import About from '../../components/swiper.js'
+import '../../../node_modules/swiper/css/swiper.min.css'
 
 function App() {
   return (
